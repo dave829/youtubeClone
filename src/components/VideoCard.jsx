@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { format, render, cancel, register } from "timeago.js";
-import koLocal from "timeago.js/lib/lang/ko";
+import { format } from "timeago.js";
 
-//register("ko", koLocal);
 export const VideoCard = ({ video }) => {
   const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ export const VideoCard = ({ video }) => {
       <div>
         <p className="font-semibold my-2">{title}</p>
         <p className="text-sm opacity-80">{channelTitle}</p>
-        <p className="text-sm opacity-80">{format(publishedAt, "ko")}</p>
+        <p className="text-sm opacity-80">{format(publishedAt)}</p>
       </div>
     </li>
   );

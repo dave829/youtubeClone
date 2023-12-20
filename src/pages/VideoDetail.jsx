@@ -18,7 +18,8 @@ function VideoDetail() {
           width="100%"
           height="640"
           src={`http://www.youtube.com/embed/${video.id}`}
-          frameborder="0"
+          style={{ border: "none" }}
+          title={title}
         />
         <div>
           <h2>{title}</h2>
