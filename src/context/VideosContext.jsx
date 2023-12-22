@@ -12,17 +12,17 @@ export function VideosContextProvider({ children }) {
   const [likedVideos, setLikedVideos] = useState(null);
 
   //mock data
-  const queryFn = async () => {
-    return axios
-      .get(`/videos/${keyword ? "search" : "popular"}.json`)
-      .then((res) => res.data.items);
-  };
+  //   const queryFn = async () => {
+  //     return axios
+  //       .get(`/videos/${keyword ? "search" : "popular"}.json`)
+  //       .then((res) => res.data.items);
+  //   };
 
   //  youtube real api
-  // const queryFn = async () => {
-  //   const youtube = new Youtube();
-  //   return youtube.search(keyword);
-  // };
+  const queryFn = async () => {
+    const youtube = new Youtube();
+    return youtube.search(keyword);
+  };
 
   const {
     isLoading,
