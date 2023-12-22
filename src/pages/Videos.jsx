@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { VideoCard } from "../components/VideoCard";
 import axios from "axios";
 import Youtube from "../api/youtube";
+import { useVideosContext } from "../context/VideosContext";
 
 export const Videos = () => {
-  const { keyword } = useParams();
+  const { keyword, videos, isLoading, error } = useVideosContext();
+  //const { keyword } = useParams();
 
   //mock data
   // const queryFn = async () => {
@@ -16,20 +18,21 @@ export const Videos = () => {
   // };
 
   //  youtube real api
-  const queryFn = async () => {
-    const youtube = new Youtube();
-    return youtube.search(keyword);
-  };
+  // const queryFn = async () => {
+  //   const youtube = new Youtube();
+  //   return youtube.search(keyword);
+  // };
 
-  const {
-    isLoading,
-    error,
-    data: videos,
-  } = useQuery({
-    queryKey: ["videos", keyword],
-    queryFn,
-    staleTime: 1000 * 60 * 1,
-  });
+  // const {
+  //   isLoading,
+  //   error,
+  //   data: videos,
+  // } = useQuery({
+  //   queryKey: ["videos", keyword],
+  //   queryFn,
+  //   staleTime: 1000 * 60 * 1,
+  // });
+  //console.log(videos);
 
   return (
     <>

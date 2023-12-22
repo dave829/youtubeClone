@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { BsYoutube, BsSearch } from "react-icons/bs";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { login, logout, onUserStateChange } from "../api/firebase";
+import { User } from "./User";
 
 export const SearchHeader = () => {
   const { keyword } = useParams();
   const navigate = useNavigate();
   const [text, setText] = useState("");
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    onUserStateChange((user) => {
+      //console.log(user);
+      setUser(user);
+    });
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/videos/${text}`);
@@ -32,6 +43,14 @@ export const SearchHeader = () => {
           <BsSearch />
         </button>
       </form>
+      <nav className="w-2/4 flex items-center justify-center gap-10 font-semibold">
+        {user && user.isAdmin && <Link to="/videos/myvideos">MyVideos</Link>}
+        {user && <User user={user} />}
+        <div className="bg-black text-white py-2 px-4 rounded-sm hover:brightness-150">
+          {!user && <button onClick={login}>Login</button>}
+          {user && <button onClick={logout}>Logout</button>}
+        </div>
+      </nav>
     </header>
   );
 };

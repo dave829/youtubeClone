@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { SearchHeader } from "./components/SearchHeader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { VideosContextProvider } from "./context/VideosContext";
 
 function App() {
   const qureyClient = new QueryClient();
@@ -8,7 +9,9 @@ function App() {
     <>
       <SearchHeader />
       <QueryClientProvider client={qureyClient}>
-        <Outlet />
+        <VideosContextProvider>
+          <Outlet />
+        </VideosContextProvider>
       </QueryClientProvider>
     </>
   );
